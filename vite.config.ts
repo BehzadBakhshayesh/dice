@@ -4,6 +4,7 @@ import babel from '@rolldown/plugin-babel'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/dice/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
@@ -69,11 +70,11 @@ export default defineConfig({
 
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        navigateFallback: 'index.html',
+        navigateFallback: '/dice/index.html',
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: false
       }
     })
-  ],
+  ]
 })
