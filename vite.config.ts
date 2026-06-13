@@ -18,15 +18,15 @@ export default defineConfig({
       ],
 
       manifest: {
-        id: '/',
+        id: '/dice/',
         name: 'جفت تاس',
         short_name: 'جفت تاس',
         description: 'جفت تاس',
         theme_color: '#f0f2f5',
         background_color: '#f0f2f5',
         display: 'standalone',
-        start_url: '/',
-        scope: '/',
+        start_url: '/dice/',
+        scope: '/dice/',
         icons: [
           {
             src: 'pwa-32x32.png',
