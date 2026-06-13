@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Dice, type DiceValue } from "./Dice";
 
 export default function DiceManager({ count = 2 }: { count?: number }) {
@@ -6,7 +6,7 @@ export default function DiceManager({ count = 2 }: { count?: number }) {
     Array(count).fill(1) as DiceValue[]
   );
   const [rolling, setRolling] = useState(false);
-  const [autoRoll, setAutoRoll] = useState(false);
+  // const [autoRoll, setAutoRoll] = useState(false);
 
   const roll = useCallback(() => {
     if (rolling) return;
@@ -19,13 +19,13 @@ export default function DiceManager({ count = 2 }: { count?: number }) {
     }, 600);
   }, [rolling, values]);
 
-  useEffect(() => {
-    let interval: any;
-    if (autoRoll) {
-      interval = setInterval(roll, 2000);
-    }
-    return () => clearInterval(interval);
-  }, [autoRoll, roll]);
+  // useEffect(() => {
+  //   let interval: any;
+  //   if (autoRoll) {
+  //     interval = setInterval(roll, 2000);
+  //   }
+  //   return () => clearInterval(interval);
+  // }, [autoRoll, roll]);
 
   return (
     <div className="game-container">

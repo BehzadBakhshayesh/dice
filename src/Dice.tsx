@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Transition } from "framer-motion";
 import "./dice.css";
 
 export type DiceValue = 1 | 2 | 3 | 4 | 5 | 6;
@@ -19,7 +19,8 @@ const faceRotation: Record<DiceValue, { x: number; y: number }> = {
 };
 
 export function Dice({ value, rolling, delay = 0 }: DiceProps) {
-  const springTransition = {
+  const springTransition: Transition<any>
+    = {
     type: "spring",
     stiffness: 260,
     damping: 20,
@@ -42,15 +43,15 @@ export function Dice({ value, rolling, delay = 0 }: DiceProps) {
         animate={
           rolling
             ? {
-                y: [0, -100, 0],
-                rotateX: [0, 720, 1080],
-                rotateY: [0, 360, 720],
-              }
+              y: [0, -100, 0],
+              rotateX: [0, 720, 1080],
+              rotateY: [0, 360, 720],
+            }
             : {
-                y: 0,
-                rotateX: faceRotation[value].x,
-                rotateY: faceRotation[value].y,
-              }
+              y: 0,
+              rotateX: faceRotation[value].x,
+              rotateY: faceRotation[value].y,
+            }
         }
         transition={
           rolling ? { duration: 0.6, ease: "easeInOut" } : springTransition
