@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  border: 1px solid blue;
 }
+
 html,
 body,
 #root {
@@ -69,18 +69,23 @@ body,
 .face-1 {
   transform: rotateY(0deg) translateZ(50px);
 }
+
 .face-6 {
   transform: rotateY(180deg) translateZ(50px);
 }
+
 .face-2 {
   transform: rotateY(-90deg) translateZ(50px);
 }
+
 .face-5 {
   transform: rotateY(90deg) translateZ(50px);
 }
+
 .face-3 {
   transform: rotateX(90deg) translateZ(50px);
 }
+
 .face-4 {
   transform: rotateX(-90deg) translateZ(50px);
 }
@@ -92,11 +97,13 @@ body,
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
+
 .dot-cell {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .dot {
   width: 14px;
   height: 14px;
@@ -121,6 +128,7 @@ body,
   width: 100%;
   display: flex;
 }
+
 .btn {
   width: 100%;
   padding: 12px 24px;
@@ -130,17 +138,21 @@ body,
   cursor: pointer;
   transition: all 0.2s;
 }
+
 .roll {
   background: #2563eb;
   color: white;
 }
+
 .auto {
   background: #64748b;
   color: white;
 }
+
 .auto.active {
   background: #ef4444;
 }
+
 .total-score {
   font-size: 24px;
   font-weight: 900;
