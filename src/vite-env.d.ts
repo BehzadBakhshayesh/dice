@@ -1,3 +1,3 @@
 /// <reference types="vite/client" />
-
-declare module 'vite-plugin-pwa'
+/// <reference types="vite-plugin-pwa/react" />
+/// <reference types="vite-plugin-pwa/info" />

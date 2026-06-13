@@ -1,23 +1,59 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useRegisterSW } from 'virtual:pwa-register/react'
+import React from 'react';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 
-function ReloadPrompt() {
+const ReloadPrompt: React.FC = () => {
     const {
         needRefresh: [needRefresh, setNeedRefresh],
         updateServiceWorker,
     } = useRegisterSW({
-        onRegistered(r) { console.log('SW Registered') },
-        onRegisterError(error) { console.log('SW Registration error', error) },
-    })
+        onRegistered(r) {
+            console.log('SW Registered:', r);
+        },
+        onRegisterError(error) {
+            console.log('SW Registration error:', error);
+        },
+    });
+
+    const close = () => {
+        setNeedRefresh(false);
+    };
 
     if (!needRefresh) return null;
 
     return (
-        <div style={{ position: 'fixed', bottom: 20, right: 20, padding: 20, background: '#fff', border: '1px solid #ccc' }}>
-            <span>نسخه جدیدی در دسترس است!</span>
-            <button onClick={() => updateServiceWorker(true)}>آپدیت</button>
+        <div
+            style={{
+                position: 'fixed',
+                bottom: '20px',
+                right: '20px',
+                padding: '20px',
+                background: '#fff',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                zIndex: 1000,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px'
+            }}
+        >
+            <span style={{ color: '#333' }}>نسخه جدیدی در دسترس است!</span>
+            <div style={{ display: 'flex', gap: '10px' }}>
+                <button
+                    onClick={() => updateServiceWorker(true)}
+                    style={{ cursor: 'pointer', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}
+                >
+                    آپدیت
+                </button>
+                <button
+                    onClick={close}
+                    style={{ cursor: 'pointer', padding: '5px 10px' }}
+                >
+                    بستن
+                </button>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default ReloadPrompt
+export default ReloadPrompt;
