@@ -1,9 +1,12 @@
 import DiceManager from "@/components/dice/diceManager";
 import ReloadPrompt from "@/components/ReloadPrompt";
+import MainLayout from "./components/mainLayout";
 
 const App: React.FC = () => {
   return <>
-    <DiceManager />
+    <MainLayout>
+      <DiceManager />
+    </MainLayout>
     <ReloadPrompt />
   </>;
 }
