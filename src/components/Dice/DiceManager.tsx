@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import { useSound } from "@/hooks/useSound";
-import type { DiceValue } from "./dice";
-import Dice from "./dice";
+import type { DiceValue } from "./Dice";
+import Dice from "./Dice";
 
 export default function DiceManager({ count = 2 }: { count?: number }) {
   const play = useSound();
