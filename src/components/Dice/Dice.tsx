@@ -1,5 +1,5 @@
 import { motion, type Transition } from "framer-motion";
-import "./dice.css";
+import "./style.css";
 
 export type DiceValue = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -18,7 +18,27 @@ const faceRotation: Record<DiceValue, { x: number; y: number }> = {
   6: { x: 180, y: 0 },
 };
 
-export function Dice({ value, rolling, delay = 0 }: DiceProps) {
+const Dots: React.FC<{ value: DiceValue }> = ({ value }) => {
+  const dotMap: Record<DiceValue, number[]> = {
+    1: [4],
+    2: [0, 8],
+    3: [0, 4, 8],
+    4: [0, 2, 6, 8],
+    5: [0, 2, 4, 6, 8],
+    6: [0, 2, 3, 5, 6, 8],
+  };
+  return (
+    <>
+      {Array.from({ length: 9 }).map((_, i) => (
+        <div key={i} className="dot-cell">
+          {dotMap[value].includes(i) && <div className="dot" />}
+        </div>
+      ))}
+    </>
+  );
+}
+
+const Dice: React.FC<DiceProps> = ({ value, rolling, delay = 0 }) => {
   const springTransition: Transition<any>
     = {
     type: "spring",
@@ -71,22 +91,4 @@ export function Dice({ value, rolling, delay = 0 }: DiceProps) {
   );
 }
 
-function Dots({ value }: { value: DiceValue }) {
-  const dotMap: Record<DiceValue, number[]> = {
-    1: [4],
-    2: [0, 8],
-    3: [0, 4, 8],
-    4: [0, 2, 6, 8],
-    5: [0, 2, 4, 6, 8],
-    6: [0, 2, 3, 5, 6, 8],
-  };
-  return (
-    <>
-      {Array.from({ length: 9 }).map((_, i) => (
-        <div key={i} className="dot-cell">
-          {dotMap[value].includes(i) && <div className="dot" />}
-        </div>
-      ))}
-    </>
-  );
-}
+export default Dice

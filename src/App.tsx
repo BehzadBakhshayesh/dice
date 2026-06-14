@@ -1,7 +1,7 @@
-import DiceManager from "./components/Dice/DiceManager";
-import ReloadPrompt from "./components/ReloadPrompt";
+import DiceManager from "@/components/dice/DiceManager";
+import ReloadPrompt from "@/components/ReloadPrompt";
 
-function App() {
+const App: React.FC = () => {
   return <div className="app">
     <DiceManager />
     <ReloadPrompt />
