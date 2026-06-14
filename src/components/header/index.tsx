@@ -29,7 +29,6 @@ const handleShare = async () => {
 const Header: React.FC = () => {
     const [c, setC] = useState(false)
     const copy = async () => {
-
         try {
             await navigator.clipboard.writeText("https://behzadbakhshayesh.github.io/dice/");
             setC(true)
@@ -41,8 +40,6 @@ const Header: React.FC = () => {
             }, 3000);
         }
     };
-
-
     return (
         <div className='header-wrapper'>
             <div onClick={copy} className='icon-wrapper'>
