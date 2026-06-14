@@ -6,7 +6,7 @@ import CopySuccess from '../svg/copySuccess';
 
 
 const handleShare = async () => {
-    const combinedText = `\n  link: https://behzadbakhshayesh.github.io/dice/\n\n${window.location.origin}`;
+    const combinedText = `\n  link:\n https://behzadbakhshayesh.github.io/dice/ \n`;
 
     const shareData = {
         title: "جفت تاس",
