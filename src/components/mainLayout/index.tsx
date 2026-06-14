@@ -12,7 +12,6 @@ const MainLayout: React.FC<PropsType> = ({ children }) => {
             <div className='app-content-wrapper'>
                 {children}
             </div>
-
         </div>
     )
 }
