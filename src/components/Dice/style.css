@@ -126,7 +126,7 @@
 }
 
 .roll {
-  background: #2563eb;
+  background-color: var(--main-btn-bg);
   color: white;
 }
 

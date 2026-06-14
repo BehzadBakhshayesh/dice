@@ -1,6 +1,7 @@
 :root {
     --header-height: 5rem;
-    --main-bg-color: #f0f2f5
+    --main-bg-color: #f0f2f5;
+    --main-btn-bg: #36454F
 }
 
 * {
