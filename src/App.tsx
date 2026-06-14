@@ -1,5 +1,5 @@
-import DiceManager from "./DiceManager";
-import ReloadPrompt from "./ReloadPrompt";
+import DiceManager from "./components/Dice/DiceManager";
+import ReloadPrompt from "./components/ReloadPrompt";
 
 function App() {
   return <div className="app">

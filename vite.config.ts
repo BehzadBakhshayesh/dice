@@ -9,15 +9,14 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] }),
     VitePWA({
-      registerType: 'prompt',
+      // registerType: 'prompt',
+      registerType: 'autoUpdate',
       injectRegister: 'auto',
-
       includeAssets: [
         'favicon.ico',
         'apple-touch-icon.png',
         'masked-icon.svg'
       ],
-
       manifest: {
         id: '/dice/',
         name: 'جفت تاس',
