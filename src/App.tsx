@@ -1,4 +1,4 @@
-import DiceManager from "@/components/dice/DiceManager";
+import DiceManager from "@/components/dice/diceManager";
 import ReloadPrompt from "@/components/ReloadPrompt";
 
 const App: React.FC = () => {
