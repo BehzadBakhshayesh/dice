@@ -6,12 +6,12 @@ const ReloadPrompt: React.FC = () => {
         needRefresh: [needRefresh, setNeedRefresh],
         updateServiceWorker,
     } = useRegisterSW({
-        onRegistered(r) {
-            console.log('SW Registered:', r);
-        },
-        onRegisterError(error) {
-            console.log('SW Registration error:', error);
-        },
+        // onRegistered(r) {
+        //     console.log('SW Registered:', r);
+        // },
+        // onRegisterError(error) {
+        //     console.log('SW Registration error:', error);
+        // },
     });
 
     const close = () => {
@@ -43,13 +43,13 @@ const ReloadPrompt: React.FC = () => {
                     onClick={() => updateServiceWorker(true)}
                     style={{ cursor: 'pointer', padding: '5px 10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}
                 >
-                    آپدیت
+                    Update
                 </button>
                 <button
                     onClick={close}
                     style={{ cursor: 'pointer', padding: '5px 10px' }}
                 >
-                    بستن
+                    Close
                 </button>
             </div>
         </div>
