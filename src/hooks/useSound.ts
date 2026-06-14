@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import dice from '@/assets/sounds/dice.wav';
+import dice from '@/assets/sounds/dice.mp3';
 
 const audioBufferCache: Record<string, AudioBuffer> = {};
 
