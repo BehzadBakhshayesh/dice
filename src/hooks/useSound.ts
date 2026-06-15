@@ -1,66 +1,69 @@
-import { useEffect, useRef } from 'react';
-import dice from '@/assets/sounds/dice.mp3';
+import { useEffect, useRef } from "react";
 
-const audioBufferCache: Record<string, AudioBuffer> = {};
+const bufferCache: Record<string, AudioBuffer> = {};
 
-export const useSound = (url: string = dice, volume: number = 0.5) => {
-  const audioContextRef = useRef<AudioContext | null>(null);
+let audioContext: AudioContext | null = null;
+
+function getContext() {
+  if (!audioContext) {
+    audioContext = new AudioContext();
+  }
+  return audioContext;
+}
+
+export function useSound(url: string, volume = 0.5) {
   const bufferRef = useRef<AudioBuffer | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
 
   useEffect(() => {
-    const init = async () => {
-      const context = new AudioContext();
-      audioContextRef.current = context;
+    let mounted = true;
 
-      const gainNode = context.createGain();
-      gainNode.gain.value = volume;
-      gainNode.connect(context.destination);
-      gainNodeRef.current = gainNode;
+    const load = async () => {
+      const ctx = getContext();
 
-      if (audioBufferCache[url]) {
-        bufferRef.current = audioBufferCache[url];
-      } else {
-        const response = await fetch(url);
-        const arrayBuffer = await response.arrayBuffer();
-        const decoded = await context.decodeAudioData(arrayBuffer);
-        bufferRef.current = decoded;
-        audioBufferCache[url] = decoded;
+      if (bufferCache[url]) {
+        bufferRef.current = bufferCache[url];
+        return;
+      }
+
+      const res = await fetch(url);
+      const arr = await res.arrayBuffer();
+      const buffer = await ctx.decodeAudioData(arr);
+
+      bufferCache[url] = buffer;
+
+      if (mounted) {
+        bufferRef.current = buffer;
       }
     };
 
-    init();
+    load();
 
     return () => {
-      audioContextRef.current?.close();
+      mounted = false;
     };
   }, [url]);
 
-  useEffect(() => {
-    if (gainNodeRef.current) {
-      gainNodeRef.current.gain.value = volume;
-    }
-  }, [volume]);
-
   const play = () => {
-    if (
-      !audioContextRef.current ||
-      !bufferRef.current ||
-      !gainNodeRef.current
-    ) {
-      return;
+    const ctx = getContext();
+    const buffer = bufferRef.current;
+
+    if (!buffer) return;
+
+    if (ctx.state === "suspended") {
+      ctx.resume();
     }
 
-    if (audioContextRef.current.state === 'suspended') {
-      audioContextRef.current.resume();
-    }
+    const source = ctx.createBufferSource();
+    const gain = ctx.createGain();
 
-    const source = audioContextRef.current.createBufferSource();
-    source.buffer = bufferRef.current;
+    gain.gain.value = volume;
 
-    source.connect(gainNodeRef.current);
-    source.start(0);
+    source.buffer = buffer;
+    source.connect(gain);
+    gain.connect(ctx.destination);
+
+    source.start();
   };
 
   return play;
-};
+}

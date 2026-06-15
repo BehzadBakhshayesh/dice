@@ -4,7 +4,7 @@ import type { DiceValue } from "./Dice";
 import Dice from "./Dice";
 
 export default function DiceManager({ count = 2 }: { count?: number }) {
-  const play = useSound();
+  const play = useSound("/dice/sounds/dice.mp3");
   const startTouch = useRef(0);
   const [values, setValues] = useState<DiceValue[]>(
     Array(count).fill(1) as DiceValue[]
@@ -15,12 +15,12 @@ export default function DiceManager({ count = 2 }: { count?: number }) {
     setRolling(true);
     setTimeout(() => {
       play()
-      setValues(
-        values.map(() => (Math.floor(Math.random() * 6) + 1) as DiceValue)
+      setValues(v =>
+        v.map(() => (Math.floor(Math.random() * 6) + 1) as DiceValue)
       );
       setRolling(false);
     }, 600);
-  }, [rolling, values]);
+  }, [rolling]);
 
   const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
     startTouch.current = e.touches[0].clientX;
