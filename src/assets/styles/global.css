@@ -21,3 +21,7 @@ body,
     font-size: 10px;
     background-color: var(--main-bg-color);
 }
+
+body {
+    position: fixed;
+}
