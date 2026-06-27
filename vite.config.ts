@@ -33,8 +33,8 @@ export default defineConfig({
         scope: '/dice/',
         icons: [
           {
-            src: 'pwa-32x32.png',
-            sizes: '32x32',
+            src: 'pwa-36x36.png',
+            sizes: '36x36',
             type: 'image/png'
           },
           {
@@ -49,6 +49,11 @@ export default defineConfig({
           },
           {
             src: 'pwa-144x144.png',
+            sizes: '144x144',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-192x192.png',
             sizes: '144x144',
             type: 'image/png'
           },
